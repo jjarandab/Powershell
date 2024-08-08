@@ -1,6 +1,6 @@
 # Exchange Online
 
-``` powershell
+```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine -Force;
 Install-PackageProvider -Name NuGet -Force;
 Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted;
@@ -32,13 +32,13 @@ Connect-ExchangeOnline -UserPrincipalName <UPN>
 
 Get mailbox info
 
-``` powershell
+```powershell
 Get-Mailbox -ResultSize Unlimited | Select-Object IsMailboxEnabled,AccountDisabled,DisplayName,UserPrincipalName,MailboxPlan,WhenCreated,WhenChanged | Export-CSV C:\”SHAFT.CSV” –NoTypeInformation -Encoding UTF8
 ```
 
 Microsoft Online [Password Never Expires]
 
-``` powershell
+```powershell
 Install-Module MSOnline
 Connect-MsolService
 cd C:\Users\username\Documents\Scripts
@@ -51,7 +51,14 @@ Get-MsolUser | Where-Object {$_.PasswordNeverExpires -eq $true -and $_.IsLicense
 
 Change Password on nextlogin
 
-``` powershell
+```powershell
 Set-MsolUserPassword -UserPrincipalName skybartas@shaftesbury.ca -ForceChangePasswordOnly $true -ForceChangePassword $true
 ```
+
+Exchange PST Export
+
+| EAC > Roles > AdminRoles > Discovery Management > Add Admin account and Export role                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| compliance.microsoft.com > Roles and Scopes > Permissions > eDiscovery Manager > Edit > Manage eDiscovery Administrator > Chose User compliance.microsoft.com > eDiscovery > Standard > Create |
+
 
