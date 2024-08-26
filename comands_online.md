@@ -29,18 +29,11 @@ Get-ADUser -Filter * -SearchBase "OU=O365 Enabled,OU=Shaftesbury,DC=Shaftesbury,
 Connect to M365
 
 ```powershell
+#Connect
 Connect-MsolService
-```
-
-Get **LastPasswordChangeTimeStamp**
-
-```powershell
+#Get LastPasswordChangeTimeStamp
 Get-MsolUser -UserPrincipalName [nicolas@newcom.ca](<mailto:nicolas@newcom.ca>) | Select DisplayName,UserPrincipalName,LastPasswordChangeTimeStamp
-```
-
-Get all users who have changed password **more than 90 days** before
-
-```powershell
+#Get all users who have changed password **more than 90 days** before
 Get-MsolUser -All | Where {$_.LastPasswordChangeTimeStamp -lt ([System.DateTime]::Now).AddDays(-90)} | Sort-Object LastPasswordChangeTimeStamp -Descending | Select DisplayName,LastPasswordChangeTimeStamp
 ```
 
